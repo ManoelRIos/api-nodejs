@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Api de Usuários</title>
+
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <ul class="cards">
+      </ul>
+
+    <script>
+      async function get() {
+        try {
+          const response = await fetch("http://localhost:3000/");
+  
+          const data = await response.json();
+          showUsers(data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      
+      get();
+      function showUsers(users) {
+        let output = "";
+        for (let user of users) {
+          output += 
+          `<li>
+              <a href="" class="card"> 
+                <img src="${user.photo}" class="card__image" alt="" />
+                <div class="card__overlay">
+                  <div class="card__header">
+                    <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+                    <img class="card__thumb" src="https://i.imgur.com/7D7I6dI.png" alt="" />
+                    <div class="card__header-text">
+                      <h3 class="card__title">${user.name}</h3>            
+                      <span class="card__status">1 hour ago</span>
+                    </div>
+                  </div>
+                  <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                </div>
+              </a>
+            </li>`;
+        }
+        document.querySelector(".cards").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>
