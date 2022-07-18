@@ -17,9 +17,9 @@
     <script>
       async function get() {
         try {
-          const response = await fetch("http://localhost:3000/");
+          const photos = await fetch("http://localhost:4567/api/photos");
   
-          const data = await response.json();
+          const data = await photos.json();
           showUsers(data);
         } catch (error) {
           console.error(error);
@@ -33,17 +33,17 @@
           output += 
           `<li>
               <a href="" class="card"> 
-                <img src="${user.post}" class="card__image" alt="" />
+                <img src="${user.url}" class="card__image" alt="" />
                 <div class="card__overlay">
                   <div class="card__header">
                     <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-                    <img class="card__thumb" src="${user.picture}" alt="" />
+                    <img class="card__thumb" src="${user.thumbnailUrl}" alt="" />
                     <div class="card__header-text">
                       <h3 class="card__title">${user.name}</h3>            
-                      <span class="card__status">${user.age} anos</span>
+                      <span class="card__status">${user.city} anos</span>
                     </div>
                   </div>
-                  <p class="card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, blanditiis?</p>
+                  <p ${user.title}</p>
                 </div>
               </a>
             </li>`;
